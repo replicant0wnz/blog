@@ -1,2 +1,1 @@
-# blog
-Personal blog
+# blog by glenn
