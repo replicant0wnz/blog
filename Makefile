@@ -3,7 +3,7 @@ SHELL := /bin/bash
 # Global stuff
 DOCKER=docker
 SOURCE_PATH := $(shell pwd)
-WORKING_PATH=/srv/jekyll/srv/jekyll
+WORKING_PATH=/srv/jekyll
 CONFIG="makefile.json"
 UID := $(shell id -u)
 
