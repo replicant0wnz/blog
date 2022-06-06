@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<header>
+  <pre>
+ __     __                 __                    __                      
+|  |--.|  |.-----..-----. |  |--..--.--. .-----.|  |.-----..-----..-----.
+|  _  ||  ||  _  ||  _  | |  _  ||  |  | |  _  ||  ||  -__||     ||     |
+|_____||__||_____||___  | |_____||___  | |___  ||__||_____||__|__||__|__|
+                  |_____|        |_____| |_____|                         
+  </pre>
+  {%-if site.theme_config.show_description-%}
+    <p>{{ site.description }}</p>
+  {%-endif-%}
+</header>
+
+{%-include menu_item.html collection=site.data.menu.entries-%}
+
+{{ content }}
