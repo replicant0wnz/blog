@@ -1,0 +1,30 @@
+entries:
+  - title: about
+    url: about.html
+
+  - title: all posts
+    post_list:
+      limit: 5
+      show_more: true
+      show_more_text: older
+      show_more_url: archive.html
+  
+  - title: devops
+    post_list:
+      category: devops
+      limit: 5
+      show_more: true
+      show_more_text: older
+      show_more_url: archive.html
+
+  - title: MÖRK BORG
+    post_list:
+      category: MÖRK BORG
+      limit: 5
+      show_more: true
+      show_more_text: older
+      show_more_url: archive.html
+
+
+  - title: rss
+    url: feed.xml
