@@ -4,9 +4,7 @@ category: MÖRK BORG
 title: "Galgenbeck: Sacrifice Material"
 ---
 
-**Note I have not gotten permission from the author to publish these. If there is any copyright infringement please let me know and I can remove immediately**
-
-The following images and document were created to make my running of "Galgenbeck: Sacrifice" a little more immersive.
+The following images and document were created to make my running of [Galgenbeck: Sacrifice](https://www.drivethrurpg.com/product/376385?affiliate_id=1399969) a little more immersive.
 During play I have my laptop hooked up to a TV and I display the images on it through out play. 
 
 For example, here's my setup:
