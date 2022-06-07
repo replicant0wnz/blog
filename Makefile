@@ -54,10 +54,10 @@ init:
 	$(DOCKER_RUN) -e JEKYLL_ROOTLESS=1 $(JEKYLL_CONTAINER) bundle
 
 update:
-	$(DOCKER_RUN) $(JEKYLL_CONTAINER) bundle update
+	$(DOCKER_RUN) -e JEKYLL_ROOTLESS=1 $(JEKYLL_CONTAINER) bundle update
 
 build:
-	$(DOCKER_RUN) $(JEKYLL_CONTAINER) jekyll build
+	$(DOCKER_RUN) -e JEKYLL_ROOTLESS=1 $(JEKYLL_CONTAINER) jekyll build
 	ln -s _site blog
 
 test:
