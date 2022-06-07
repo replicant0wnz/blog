@@ -51,7 +51,7 @@ nginx_stop:
 	$(DOCKER) rm nginx
 
 init:
-	$(DOCKER_RUN) $(JEKYLL_CONTAINER) bundle
+	$(DOCKER_RUN) -e JEKYLL_ROOTLESS=1 $(JEKYLL_CONTAINER) bundle
 
 update:
 	$(DOCKER_RUN) $(JEKYLL_CONTAINER) bundle update
