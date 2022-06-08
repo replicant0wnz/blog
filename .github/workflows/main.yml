@@ -37,10 +37,10 @@ jobs:
         with:
           files: "reports/xunit/*.xml"
           
-            #      - name: deploy
-            #        run: |
-            #          make deploy
-            #      
-            #      - name: invalidate
-            #        run: |
-            #          make invalidate
+      - name: deploy
+        run: |
+          make deploy
+
+      - name: invalidate
+        run: |
+          make invalidate
