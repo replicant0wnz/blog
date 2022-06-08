@@ -72,8 +72,8 @@ deploy:
 invalidate:
 	INVALIDATION=`$(AWS) $(AWS_CONTAINER) cloudfront create-invalidation --distribution-id $(DISTRIBUTION_ID) --paths $(INVALIDATION_PATH) --region $(S3_REGION)` ; \
 	echo $$INVALIDATION ; \
-	INVALIDATION_ID=`echo $$INVALIDATION | $(JQ) -r .Invalidation.Id` ; \
-	$(AWS) $(AWS_CONTAINER) cloudfront wait invalidation-completed --distribution-id $(DISTRIBUTION_ID) --id $$INVALIDATION_ID
+	INVALIDATION_ID=`echo $$INVALIDATION | $(JQ) -r .Invalidation.Id` 
+#	$(AWS) $(AWS_CONTAINER) cloudfront wait invalidation-completed --distribution-id $(DISTRIBUTION_ID) --id $$INVALIDATION_ID
 
 clean:
 	rm -rf Gemfile.lock _site .bundle .sass-cache .jekyll-cache vendor reports tests/chrome.robot blog dist
