@@ -1,8 +1,8 @@
 ---
 layout: post
 category: MÖRK BORG
-title: "Galgenbeck: Sacrifice Material"
-description: "Supplements for the MÖRK BORG adventure Galgenbeck: Sacrifice"
+title: Galgenbeck: Sacrifice Material
+description: Supplements for the MÖRK BORG adventure Galgenbeck: Sacrifice
 image: blog/assets/docker.png
 ---
 
