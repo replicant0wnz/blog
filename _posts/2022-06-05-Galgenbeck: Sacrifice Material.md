@@ -2,6 +2,8 @@
 layout: post
 category: MÖRK BORG
 title: "Galgenbeck: Sacrifice Material"
+description: "Supplements for the MÖRK BORG adventure Galgenbeck: Sacrifice"
+image: blog/assets/mb.jpg
 ---
 
 The following images and document were created to make my running of [Galgenbeck: Sacrifice](https://www.drivethrurpg.com/product/376385?affiliate_id=1399969) a little more immersive.
