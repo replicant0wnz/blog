@@ -70,10 +70,13 @@ deploy:
 	$(AWS) -v $(SOURCE_PATH)/_site:$(AWS_WORKING_PATH) -w $(AWS_WORKING_PATH) $(AWS_CONTAINER)  s3 sync . s3://$(S3_BUCKET)/blog --delete --acl public-read --region $(S3_REGION)
 
 invalidate:
-	$(AWS) $(AWS_CONTAINER) cloudfront create-invalidation --distribution-id $(DISTRIBUTION_ID) --paths $(INVALIDATION_PATH) --region $(S3_REGION)
+	INVALIDATION=`$(AWS) $(AWS_CONTAINER) cloudfront create-invalidation --distribution-id $(DISTRIBUTION_ID) --paths $(INVALIDATION_PATH) --region $(S3_REGION)` ; \
+	echo $$INVALIDATION ; \
+	INVALIDATION_ID=`echo $$INVALIDATION | $(JQ) -r .Invalidation.Id` ; \
+	$(AWS) $(AWS_CONTAINER) cloudfront wait invalidation-completed --distribution-id $(DISTRIBUTION_ID) --id $$INVALIDATION_ID
 
 clean:
-	rm -rf Gemfile.lock _site .bundle .sass-cache .jekyll-cache vendor reports tests/chrome.robot blog
+	rm -rf Gemfile.lock _site .bundle .sass-cache .jekyll-cache vendor reports tests/chrome.robot blog dist
 
 all: 
 	init update build
