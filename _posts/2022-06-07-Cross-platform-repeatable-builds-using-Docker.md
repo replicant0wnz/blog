@@ -7,4 +7,4 @@ image: blog/assets/mb.jpg
 ---
 Using Docker for repeatable builds locally and in your CI/CD system.
 
-Coming soon
+Coming soon! *Places under construnction sign*
