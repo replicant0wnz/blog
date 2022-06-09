@@ -69,7 +69,7 @@ build:
 
 test:
 	mkdir -p $(SOURCE_PATH)/reports/xunit && chmod -R 777 $(SOURCE_PATH)/reports
-	LATEST_POST=`cat _posts/$(LATEST_POST) | $(YQ) --front-matter=extract .description | tr '[:upper:]' '[:lower:]'` ; \
+	LATEST_POST=`cat _posts/$(LATEST_POST) | $(YQ) --front-matter=extract .title | tr '[:upper:]' '[:lower:]'` ; \
     sed "s/LATEST_POST/$$LATEST_POST/" tests/_chrome.robot > tests/chrome.robot
 	$(ROBOT)
 
