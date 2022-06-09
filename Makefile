@@ -6,6 +6,7 @@ SOURCE_PATH := $(shell pwd)
 WORKING_PATH=/srv/jekyll
 CONFIG="makefile.json"
 UID := $(shell id -u)
+LATEST_POST := $(shell ls -t1 $(SOURCE_PATH)/_posts | head -1)
 
 # Docker config
 DOCKER_RUN=$(DOCKER) run -v $(SOURCE_PATH):$(WORKING_PATH) -w $(WORKING_PATH)
@@ -16,6 +17,10 @@ JEKYLL_CONTAINER=jekyll/jekyll:4.2.0
 # jq config
 JQ_CONTAINER=imega/jq
 JQ=$(DOCKER) run -i $(JQ_CONTAINER) -c
+
+# yq config
+YQ_CONTAINER=mikefarah/yq
+YQ=$(DOCKER) run --rm -i -v "${PWD}":/workdir $(YQ_CONTAINER)
 
 # nginx config
 NGINX_CONTAINER=nginx
@@ -35,6 +40,8 @@ S3_BUCKET := $(shell cat $(CONFIG) | $(JQ) .aws.s3.destination)
 S3_REGION := $(shell cat $(CONFIG) | $(JQ) .aws.s3.region)
 DISTRIBUTION_ID := $(shell cat $(CONFIG) | $(JQ) .aws.cloudfront.distribution_id)
 INVALIDATION_PATH := $(shell cat $(CONFIG) | $(JQ) .aws.cloudfront.invalidation_path) 
+
+# Most recent file in _posts
 
 list:
 	# List options of nothing specified
@@ -61,9 +68,9 @@ build:
 	ln -s _site blog
 
 test:
-	mkdir -p $(SOURCE_PATH)/reports/xunit && chmod -R 777 $(SOURCE_PATH)/reports 
-	LATEST_POST=`$(SOURCE_PATH)/tests/latest_post.sh` ; \
-	sed "s/LATEST_POST/$$LATEST_POST/" tests/_chrome.robot > tests/chrome.robot
+	mkdir -p $(SOURCE_PATH)/reports/xunit && chmod -R 777 $(SOURCE_PATH)/reports
+	LATEST_POST=`cat _posts/$(LATEST_POST) | $(YQ) --front-matter=extract .description | tr '[:upper:]' '[:lower:]'` ; \
+    sed "s/LATEST_POST/$$LATEST_POST/" tests/_chrome.robot > tests/chrome.robot
 	$(ROBOT)
 
 deploy:
