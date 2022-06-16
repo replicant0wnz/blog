@@ -20,7 +20,7 @@ theme_config:
   show_description: true # show blog description in home page
 
 twitter:
-  card: summary
+  card: summary_large_image
 
 author:
   twitter: replicant0wnz
