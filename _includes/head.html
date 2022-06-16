@@ -2,8 +2,11 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="twitter:site" content="@replicant0wnz" />
-<meta name="twitter:creator" content="@replicant0wnz" />
+<meta name="twitter:card" content="summary_large_image">
+
+{%- if page.image -%}
+<meta name="twitter:image" content="{{ site.url }}/blog/{{ page.image }}" />
+{%- endif -%}
 
 <title>
 {%- if page.title -%}
