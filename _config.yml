@@ -22,10 +22,9 @@ theme_config:
 twitter:
   card: summary_large_image
   site: replicant0wnz
-  creator: replicant0wnz
 
 social:
-  name: Glenn E. Bailey III
+  name: replicant0wnz
   links:
     - https://twitter.com/replicant0wnz
     - https://github.com/replicant0wnz
