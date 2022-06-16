@@ -1,9 +1,9 @@
-name: main
+name: release
 
-on:
+on: 
   push:
-    branches:
-      - main
+    tags:
+      - release-*
 
 env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -11,7 +11,7 @@ env:
 
 jobs:
   build_test_publish:
-    name: "init → build → test"
+    name: "init → build → deploy → invalidate"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,14 +25,10 @@ jobs:
         run: |
           make build
       
-      - name: test
+      - name: deploy
         run: |
-          make nginx_start
-          make test 
-          make nginx_stop
+          make deploy
 
-      - name: test_result
-        uses: EnricoMi/publish-unit-test-result-action@v1
-        if: always()
-        with:
-          files: "reports/xunit/*.xml"
+      - name: invalidate
+        run: |
+          make invalidate
