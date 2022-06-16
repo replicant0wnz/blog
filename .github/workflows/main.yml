@@ -11,7 +11,7 @@ env:
 
 jobs:
   build_test_publish:
-    name: "init → build → test → release → deploy → invalidate"
+    name: "init → build → test"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,16 +31,8 @@ jobs:
           make test 
           make nginx_stop
 
-      - name: publish
+      - name: test_result
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: always()
         with:
           files: "reports/xunit/*.xml"
-          
-      - name: deploy
-        run: |
-          make deploy
-
-      - name: invalidate
-        run: |
-          make invalidate
