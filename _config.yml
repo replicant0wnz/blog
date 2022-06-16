@@ -20,7 +20,10 @@ theme_config:
   show_description: true # show blog description in home page
 
 twitter:
-  card: summary_large_image
+  card: summary
+
+author:
+  twitter: replicant0wnz
 
 social:
   name: Glenn E. Bailey III
