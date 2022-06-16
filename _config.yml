@@ -19,6 +19,11 @@ theme_config:
   date_format: "%Y-%m-%d" # customize how date is formatted
   show_description: true # show blog description in home page
 
+twitter:
+  card: summary_large_image
+  site: @replicant0wnz
+  creator: @replicant0wnz
+
 sass:
   style: :compressed
 
