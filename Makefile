@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-# Global stuff
+# Global stuffz
 DOCKER=docker
 SOURCE_PATH := $(shell pwd)
 WORKING_PATH=/srv/jekyll
