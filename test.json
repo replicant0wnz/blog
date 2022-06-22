@@ -1,0 +1,17 @@
+{
+    "Location": "https://cloudfront.amazonaws.com/2020-05-31/distribution/E3K58SB4UNLCAE/invalidation/I3LVVKVJWEM3NW",
+    "Invalidation": {                                                                                                                                                                                                  
+        "Id": "I3LVVKVJWEM3NW",                                                                                                                                                                                        
+        "Status": "InProgress",                                                                                                                                                                                        
+        "CreateTime": "2022-06-07T22:30:31.326000+00:00",                                                                                                                                                              
+        "InvalidationBatch": {                                                                                                                                                                                         
+            "Paths": {                                                                                                                                                                                                 
+                "Quantity": 1,                                                                                                                                                                                         
+                "Items": [                                                                                                                                                                                             
+                    "/*"                                                                                                                                                                                               
+                ]                                                                                                                                                                                                      
+            },                                                                                                                                                                                                         
+            "CallerReference": "cli-1654641022-134434"
+        }
+    }
+}
