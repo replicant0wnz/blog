@@ -62,6 +62,11 @@ Take this simple (generic pipeline) **golang** example:
     Using a vendor specific plug-in in your pipeline makes it difficult to 
     repeat pipeline steps in another environments, locally for example. 
 
+* **Duplicate methods to execute a single task**
+
+    In order to test locally you need to execute a different task to build a 
+    binary than you would in the CI/CD system.
+
 #### Build steps
 
 > The pipeline should list the steps to build, test, and deploy an application.
