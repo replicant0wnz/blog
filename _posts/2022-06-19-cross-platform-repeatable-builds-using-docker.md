@@ -1,8 +1,8 @@
 ---
 layout: post
 category: devops
-title: Cross-platform repeatable builds using Docker
-description: Using Docker for repeatable builds across multiple platforms
+title: Cross-platform repeatable builds using Docker and Make
+description: Using Docker and GNU Make for repeatable builds across multiple platforms
 image: assets/makefile.jpg
 custom_js: prism
 hidden: true
@@ -24,13 +24,12 @@ Actions](https://github.com/features/actions) was now included in [Github
 Enterprise](https://github.com/enterprise), which we used as our primary source 
 repo, in our existing license. 
 
-We finally settled on **Github Actions** as our integration and delivery 
-platform.  This got me thinking:
-
 > What happens if we decided to migrate to another CI/CD system? I'm going to 
 > have to migrate from one systems plug-in structure to another. Can I simplify 
 > what the build and deploys are going to look like from a local and automated 
 > perspective?
+
+**Github Actions** was the platform (for the time) we eventually stuck with.
 
 # Analysis 
 
@@ -82,3 +81,22 @@ Take this simple (generic pipeline) **golang** example:
     The pipeline should be treated as any other piece of code: `messy == bad`.
     Just like messy code, a messy pipeline can be hard to troubleshoot and 
     maintain.
+
+# Alternative approach using Docker and GNU Make
+
+> Dockerize all the things!!! This includes items like `jq` and `aws`. Never 
+> assume that a developer has a required tool installed. The only thing that 
+> should be required is Docker and GNU Make
+
+The majority of developers along with CI/CD systems have Docker and GNU Make 
+installed and ready to use. So why not use the tooling that exists in both 
+places instead of duplicating the work? To build locally you would execute:
+
+{% prism bash %}make build
+{% endprism %}
+
+Then to build in a pipeline you'd execute the same thing:
+
+{% prism yaml %}run: |
+    make build
+{% endprism %}
