@@ -7,6 +7,7 @@ image: assets/makefile.jpg
 custom_js: prism
 professional: true
 toc: true
+twitter: replicant0wnz/status/1545175730685870089
 ---
 
 # Background
