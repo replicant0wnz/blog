@@ -14,6 +14,7 @@ body[a="dark"] { @include dark-appearance; }
 @media (prefers-color-scheme: dark) {
   body[a="auto"] { @include dark-appearance; }
 }
+
 // -------------------------------------------- //
 
 // bg color is also needed in html in order to
@@ -38,9 +39,9 @@ body {
   justify-content: space-between; 
 }
 
-h2, h3, h4, h5, h6 { margin-top: 3rem; }
+h2, h3, h4, h5, h6 { margin-top: 1rem; }
 
-hr { margin: 2rem 0; }
+hr { margin: 1rem 0; }
 
 p { margin: 1rem 0; }
 
@@ -70,11 +71,6 @@ table, th, td {
   padding: 0.4rem;
 }
 
-code {
-  color: white;
-  background: black;
-}
-
 div.highlighter-rouge code {
   display: block;
   overflow-x: auto;
@@ -83,7 +79,6 @@ div.highlighter-rouge code {
 }
 
 blockquote {
-  font-style: italic;
   border: thin solid black;
   padding: 1rem;
 
@@ -91,7 +86,7 @@ blockquote {
 }
 
 img {
-  max-width: 400px;
+  max-width: 600px;
   display: block;
   margin: 0 auto;
 }
