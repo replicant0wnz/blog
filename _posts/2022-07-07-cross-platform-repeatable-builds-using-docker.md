@@ -62,7 +62,7 @@ Take this simple (generic pipeline) **golang** example:
 * **No fine grained control**
 
     When using a vendor plug-in you normally don't know what's going on under 
-    the hood; unless you delve into the vendors code.
+    the hood -- unless you delve into the vendors code.
 
 #### Build steps
 
