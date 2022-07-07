@@ -59,14 +59,14 @@ Take this simple (generic pipeline) **golang** example:
     Using a vendor specific plug-in in your pipeline makes it difficult to 
     repeat pipeline steps in other environments; locally, for example.
 
-* **Duplicate methods to execute a single task**
+* **No fine grained control**
 
-    In order to test locally you need to execute a different task to build a 
-    binary than you would in the CI/CD system.
+    When using a vendor plug-in you normally don't know what's going on under 
+    the hood; unless you delve into the vendors code.
 
 #### Build steps
 
-> The pipeline should list the steps to build, test, and deploy an application.  
+> The pipeline should list the steps to build, test, and deploy an application. 
 > It should _not_ describe **how** to build, test, and deploy the application.
 
 * **Developers and Devops relying on the pipeline for building applications**
@@ -81,13 +81,13 @@ Take this simple (generic pipeline) **golang** example:
 
 # Alternative approach using Docker and GNU Make
 
-> Dockerize all the things!!!
+**Dockerize all the things!!!**
 
 By using **Docker** we can avoid having to install the needed tooling across 
 multiple local and remote systems. This can include simple items like `jq` and 
 especially something like Terraform when versioning can really muck things up.
 
-As long as your platform allows straight `docker` commands the `Makefile` 
+Provided that your platform allows straight `docker` commands the `Makefile` 
 examples should be applicable.
 
 Let's us my [blog](https://github.com/replicant0wnz/blog) as an example. Here's 
