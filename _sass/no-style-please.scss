@@ -39,9 +39,9 @@ body {
   justify-content: space-between; 
 }
 
-h2, h3, h4, h5, h6 { margin-top: 3rem; }
+h2, h3, h4, h5, h6 { margin-top: 1rem; }
 
-hr { margin: 2rem 0; }
+hr { margin: 1rem 0; }
 
 p { margin: 1rem 0; }
 
@@ -79,7 +79,6 @@ div.highlighter-rouge code {
 }
 
 blockquote {
-  font-style: italic;
   border: thin solid black;
   padding: 1rem;
 
