@@ -82,14 +82,13 @@ Take this simple (generic pipeline) **golang** example:
 
 # Alternative approach using Docker and GNU Make
 
-> Github Actions is the currently platform I use for CI/CD so I'll be using it 
-> to demo in the rest of the article. As long as your system allows straight 
-> `docker` commands the `Makefile` examples should be applicable.
-
 ***Dockerize all the things!!!***  By using Docker we can avoid having to 
 install the needed tooling across multiple local and remote systems. This can 
 include simple items like `jq` and especially something like Terraform when 
 versioning can really muck things up.
+
+As long as your platform allows straight `docker` commands the `Makefile` 
+examples should be applicable.
 
 Let's us my [blog](https://github.com/replicant0wnz/blog) as an example. Here's 
 a condesned snippet from the `Makefile`:
