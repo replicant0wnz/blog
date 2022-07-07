@@ -81,8 +81,6 @@ Take this simple (generic pipeline) **golang** example:
 
 # Alternative approach using Docker and GNU Make
 
-**Dockerize all the things!!!**
-
 By using **Docker** we can avoid having to install the needed tooling across 
 multiple local and remote systems. This can include simple items like `jq` and 
 especially something like Terraform when versioning can really muck things up.
