@@ -82,14 +82,36 @@ Take this simple (generic pipeline) **golang** example:
 
 # Alternative approach using Docker and GNU Make
 
+### Why Docker?
+
 By using **Docker** we can avoid having to install the needed tooling across 
-multiple local and remote systems. This can include simple items like `jq` and 
-especially something like Terraform when versioning can really muck things up.
+multiple local and remote environments. This can include simple items like `jq` 
+and `black` which all developers may not have installed.
+
+### Why Make?
+
+I originally didn't want to go with `make` as I'm sure we've all encountered a 
+nightmare of a `Makefile`. After looking at various modern solutions I decided 
+on `make` for the following reasons:
+
+1. It's already there. We are trying to avoid installing extra tooling.
+2. With compiled languages like **Rust** and **Go** becoming more and more 
+   prevalent it's "making" a comeback (Pun intended).
+3. Writing a clean and concise `Makefile` doesn't require a degree in rocket 
+   science, as I previously thought.
+
+To be honest, you can use anything in place of `make` in this method. `rake`, 
+`maven`, or even shell scripts.
+
+> The important thing is to use a common tool available in all environments that 
+> allows **you** to describe the build process and not a vendor plug-in.
+
+### Implementing
 
 Provided that your platform allows straight `docker` commands the `Makefile` 
 examples should be applicable.
 
-Let's us my [blog](https://github.com/replicant0wnz/blog) as an example. Here's 
+Let's use my [blog](https://github.com/replicant0wnz/blog) as an example. Here's 
 a condensed snippet from the `Makefile`:
 
 {% prism makefile %}DOCKER=/usr/bin/docker
@@ -107,8 +129,13 @@ build:
 	$(DOCKER_RUN) -e JEKYLL_ROOTLESS=1 $(JEKYLL_CONTAINER) jekyll build
 {% endprism %}
 
-With the above `Makefile` we can execute the same steps to build both locally 
-and remote. So for local:
+The above `Makefile` is clean and shoud be easy to read for most folks. If we 
+run into an issue with a build the **description** on how to build does exists 
+in our source repository, which allows for quicker troubleshooting. Compare this 
+to digging through a vendors plug-in source repo.
+
+We can now execute the same steps to build both locally and remote.  So for 
+local:
 
 {% prism bash %}make init build{% endprism %}
 
@@ -116,6 +143,14 @@ Then to build in a pipeline you'd execute the same thing:
 
 {% prism yaml %}run: |
     make init build
+{% endprism %}
+
+Note this **lists** the steps and doesn't **describe** what the process is.  If 
+we weren't using `make` it would look like this:
+
+{% prism yaml %}run: |
+    docker run -v $PWD:/srv/jekyll -w /srv/jekyll -e JEKYLL_ROOTLESS=1 jekyll/jekyll:4.2.0 bundle
+    docker run -v $PWD:/srv/jekyll -w /srv/jekyll -e JEKYLL_ROOTLESS=1 jekyll/jekyll:4.2.0 jekyll build
 {% endprism %}
 
 Full Github actions example:
@@ -134,7 +169,7 @@ Full Github actions example:
 
 I’d like to note that a **Github** action 
 already [exists](https://github.com/marketplace/actions/build-jekyll) to build 
-Jekyll using a single line, but this issue is discussed in 
+Jekyll using a single line, but this is discussed in 
 the [**Analysis**](#analysis) above.  We would be using two separate methods to 
 build both locally and remote without complete control over the tooling.
 
