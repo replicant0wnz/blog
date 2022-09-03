@@ -43,42 +43,53 @@ INVALIDATION_PATH := $(shell cat $(CONFIG) | $(JQ) .aws.cloudfront.invalidation_
 
 # Most recent file in _posts
 
+.PHONY: list
 list:
 	# List options of nothing specified
 	grep '^[^#[:space:]].*:' Makefile
 
+.PHONY: serve
 serve:
 	$(DOCKER_RUN) --network host $(JEKYLL_CONTAINER) jekyll serve
 
+.PHONY: nginx_start
 nginx_start:
 	$(NGINX) 
 
+.PHONY: nginx_stop
 nginx_stop: 
 	$(DOCKER) stop nginx
 	$(DOCKER) rm nginx
 
+.PHONY: init
 init:
 	$(DOCKER_RUN) -e JEKYLL_ROOTLESS=1 $(JEKYLL_CONTAINER) bundle
 
+.PHONY: update
 update:
 	$(DOCKER_RUN) -e JEKYLL_ROOTLESS=1 $(JEKYLL_CONTAINER) bundle update
 
+.PHONY: build
 build:
 	$(DOCKER_RUN) -e JEKYLL_ROOTLESS=1 $(JEKYLL_CONTAINER) jekyll build
 	ln -s _site blog
 
+.PHONY: test
 test:
 	mkdir -p $(SOURCE_PATH)/reports/xunit && chmod -R 777 $(SOURCE_PATH)/reports
 	LATEST_POST=`cat _posts/$(LATEST_POST) | $(YQ) --front-matter=extract .title | tr '[:upper:]' '[:lower:]'` ; \
     sed "s/LATEST_POST/$$LATEST_POST/" tests/_chrome.robot > tests/chrome.robot
 	$(ROBOT)
 
+.PHONY: deploy
 deploy:
 	$(AWS) -v $(SOURCE_PATH)/_site:$(AWS_WORKING_PATH) -w $(AWS_WORKING_PATH) $(AWS_CONTAINER)  s3 sync . s3://$(S3_BUCKET)/blog --delete --acl public-read --region $(S3_REGION)
 
+.PHONY: invalidate
 invalidate:
 	$(AWS) $(AWS_CONTAINER) cloudfront create-invalidation --distribution-id $(DISTRIBUTION_ID) --paths $(INVALIDATION_PATH) --region $(S3_REGION)
 
+.PHONY: clean
 clean:
 	rm -rf Gemfile.lock _site .bundle .sass-cache .jekyll-cache vendor reports tests/chrome.robot blog dist cache
 
