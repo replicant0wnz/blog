@@ -25,6 +25,13 @@ entries:
       show_more_text: older
       show_more_url: archive.html
 
+  - title: software
+    post_list:
+      category: software
+      limit: 5
+      show_more: true
+      show_more_text: older
+      show_more_url: archive.html
 
   - title: rss
     url: feed.xml
