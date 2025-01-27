@@ -23,7 +23,7 @@ YQ_CONTAINER=mikefarah/yq
 YQ=$(DOCKER) run --rm -i -v "${PWD}":/workdir $(YQ_CONTAINER)
 
 # nginx config
-NGINX_CONTAINER=nginx
+NGINX_CONTAINER=nginx:1.21.1
 NGINX=$(DOCKER) run -v $(SOURCE_PATH):/usr/share/nginx/html -p 4000:80 --name nginx -d $(NGINX_CONTAINER)
 
 # Robot config
