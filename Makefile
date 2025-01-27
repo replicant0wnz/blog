@@ -27,7 +27,7 @@ NGINX_CONTAINER=nginx:1.21.1
 NGINX=$(DOCKER) run -v $(SOURCE_PATH):/usr/share/nginx/html -p 4000:80 --name nginx -d $(NGINX_CONTAINER)
 
 # Robot config
-ROBOT_CONTAINER=ppodgorsek/robot-framework:latest
+ROBOT_CONTAINER=ppodgorsek/robot-framework:3.8.0
 ROBOT=$(DOCKER) run --network host -e ROBOT_OPTIONS="--xunit xunit/output" -v $(SOURCE_PATH)/tests:/opt/robotframework/tests -v $(SOURCE_PATH)/reports:/opt/robotframework/reports $(ROBOT_CONTAINER)
 
 # AWS config
